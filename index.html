@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaithanya Janjam — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#111118;
+  --bg3:#1a1a24;
+  --accent:#7f77dd;
+  --accent2:#5dcaa5;
+  --text:#e8e6f0;
+  --muted:#8884a0;
+  --border:rgba(127,119,221,0.18);
+  --ff:'Space Grotesk',sans-serif;
+  --mono:'Space Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--ff);line-height:1.6;min-height:100vh;}
+
+nav{position:sticky;top:0;z-index:99;background:rgba(10,10,15,0.88);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:1.5rem;}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  text-decoration:none;
+
+  color:var(--text);
+  font-weight:600;
+}
+
+.nav-avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--accent);
+}
+section{padding:5rem 2rem;}
+.container{max-width:900px;margin:0 auto;}
+
+.hero{min-height:88vh;display:flex;align-items:center;padding:0 2rem;}
+.hero-inner{max-width:900px;margin:0 auto;width:100%;}
+.hero-tag{font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-name{font-size:clamp(2.4rem,7vw,5rem);font-weight:700;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-1px;}
+.hero-name span{color:var(--accent);}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:540px;margin-bottom:2.5rem;line-height:1.75;}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:#534ab7;}
+.btn-outline{background:transparent;color:var(--text);border:0.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+.stats-row{display:flex;gap:2rem;flex-wrap:wrap;margin-top:4rem;padding-top:2.5rem;border-top:0.5px solid var(--border);}
+.stat{display:flex;flex-direction:column;}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--accent);font-family:var(--mono);}
+.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+.section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.75rem;}
+.section-heading{font-size:2rem;font-weight:700;margin-bottom:3rem;letter-spacing:-0.5px;}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.skill-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;}
+.skill-card-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:12px;padding:4px 10px;border-radius:6px;font-family:var(--mono);}
+.tag-purple{background:#26215c;color:#afa9ec;}
+.tag-teal{background:#04342c;color:#5dcaa5;}
+.tag-blue{background:#042c53;color:#85b7eb;}
+.tag-amber{background:#412402;color:#ef9f27;}
+.tag-coral{background:#4a1b0c;color:#f0997b;}
+
+.projects-list{display:flex;flex-direction:column;gap:1.5rem;}
+.project-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.75rem 2rem;transition:border-color 0.2s;}
+.project-card:hover{border-color:var(--accent);}
+.project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+.project-title{font-size:1.15rem;font-weight:600;}
+.project-year{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1.25rem;}
+.project-bullets{list-style:none;margin-bottom:1.25rem;}
+.project-bullets li{font-size:13px;color:var(--muted);padding:3px 0 3px 1rem;position:relative;}
+.project-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent2);}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px;}
+
+.timeline{position:relative;padding-left:1.5rem;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0.5px;background:var(--border);}
+.timeline-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem;}
+.timeline-dot{position:absolute;left:-1.5rem;top:4px;width:8px;height:8px;border-radius:50%;background:var(--accent);transform:translateX(-3.5px);}
+.timeline-title{font-size:1rem;font-weight:600;margin-bottom:2px;}
+.timeline-sub{font-size:13px;color:var(--accent2);margin-bottom:4px;}
+.timeline-date{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:0.5rem;}
+.timeline-text{font-size:13px;color:var(--muted);}
+
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.ach-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:6px;}
+.ach-icon{font-size:20px;color:var(--accent);margin-bottom:4px;}
+.ach-title{font-size:14px;font-weight:600;}
+.ach-detail{font-size:12px;color:var(--muted);}
+
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.cert-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;}
+.cert-badge{width:36px;height:36px;border-radius:8px;background:#26215c;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cert-badge i{color:var(--accent);font-size:18px;}
+.cert-title{font-size:13px;font-weight:600;margin-bottom:3px;}
+.cert-org{font-size:12px;color:var(--muted);}
+
+.contact-box{background:var(--bg2);border:0.5px solid var(--border);border-radius:16px;padding:3rem;text-align:center;}
+.contact-heading{font-size:2rem;font-weight:700;margin-bottom:0.75rem;}
+.contact-sub{font-size:14px;color:var(--muted);margin-bottom:2rem;}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;text-decoration:none;color:var(--text);border:0.5px solid var(--border);transition:all 0.2s;}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);}
+
+footer{border-top:0.5px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+@media(max-width:600px){
+  nav{padding:0 1rem;}
+  .nav-links{gap:1rem;}
+  section{padding:3rem 1rem;}
+  .hero{padding:0 1rem;}
+  .stats-row{gap:1.25rem;}
+  .contact-box{padding:2rem 1.25rem;}
+}
+
+[data-theme="light"]{
+  --bg:#f8fafc;--bg2:#ffffff;--bg3:#eef2f7;
+  --accent:#6a5cff;--accent2:#0ea97f;
+  --text:#121826;--muted:#5f6b7a;
+  --border:rgba(106,92,255,.15);
+}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-toggle{width:42px;height:42px;border-radius:999px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative}
+.theme-toggle i{position:absolute;transition:.35s ease}
+.sun-icon{opacity:0;transform:scale(.5) rotate(-180deg)}
+[data-theme="light"] .sun-icon{opacity:1;transform:scale(1)}
+[data-theme="light"] .moon-icon{opacity:0}
+.btn-resume{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#about" class="nav-logo">
+  <img src="profile.jpg" alt="CJ" class="nav-avatar">
+  <span>Chaithanya</span>
+</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+      <i class="ti ti-sun sun-icon"></i>
+      <i class="ti ti-moon moon-icon"></i>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <div class="hero-tag">Software Engineer · Frontend · AI</div>
+    <h1 class="hero-name">Janjam<br><span>Chaithanya</span></h1>
+    <p class="hero-desc">Aspiring software engineer with a solid foundation in front-end development, data structures, and core CS — building real-world products that bridge AI × Design × Code.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:chaithanyajanjam@gmail.com"><i class="ti ti-mail"></i> Get in touch</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/chaithanya-janjam-46b16b317/" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/ChaithanyaJ20" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+    <a class="btn btn-resume" href="resume.pdf" download>
+<i class="ti ti-download"></i> Download Resume
+</a>
+</div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">350+</span><span class="stat-label">Problems on Code360</span></div>
+      <div class="stat"><span class="stat-num">100+</span><span class="stat-label">LeetCode DSA</span></div>
+      <div class="stat"><span class="stat-num">8.51</span><span class="stat-label">CGPA (BTech CSE)</span></div>
+      <div class="stat"><span class="stat-num">1419</span><span class="stat-label">AP EAPCET Rank</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-eyebrow">Work</div>
+    <h2 class="section-heading">Projects</h2>
+    <div class="projects-list">
+
+<div class="project-card">
+  <div class="project-header">
+    <div class="project-title">AI-Assisted Career Recommendation System</div>
+    <span class="project-year">2026</span>
+  </div>
+  <p class="project-desc">
+    A career recommendation system that analyzes user skills and suggests the top 3–5 relevant job roles using NLP techniques and similarity-based ranking.
+  </p>
+  <ul class="project-bullets">
+    <li>Implemented TF-IDF vectorization and cosine similarity using Scikit-learn to match user skills with job-role requirements.</li>
+    <li>Applied NLP preprocessing techniques including tokenization, stopword removal, and text normalization to improve recommendation quality.</li>
+    <li>Developed a responsive web interface using HTML, CSS, and JavaScript for skill input and recommendation display.</li>
+    <li>Leveraged Generative AI (GPT) for iterative development, debugging, and feature implementation.</li>
+  </ul>
+  <div class="project-stack">
+    <span class="tag tag-purple">Python</span>
+    <span class="tag tag-purple">Scikit-learn</span>
+    <span class="tag tag-teal">NLP</span>
+    <span class="tag tag-teal">TF-IDF</span>
+    <span class="tag tag-blue">Pandas</span>
+    <span class="tag tag-amber">HTML/CSS/JS</span>
+    <span class="tag tag-green">GPT</span>
+  </div>
+</div>
+      <div class="project-card">
+  <div class="project-header">
+    <div class="project-title">Todo Dashboard with Analytics</div>
+    <span class="project-year">2026</span>
+  </div>
+
+  <p class="project-desc">
+    Built a full-stack task management dashboard with PostgreSQL-backed persistence, interactive analytics, and real-time task tracking using the PERN stack.
+  </p>
+
+  <ul class="project-bullets">
+    <li>Implemented complete CRUD operations including task creation, editing, deletion, and status updates through RESTful APIs</li>
+    <li>Developed an analytics dashboard with dynamic Recharts pie charts to visualize completed and pending task distribution in real time</li>
+    <li>Designed a responsive user interface using React, Tailwind CSS, Axios, and React Hooks for seamless user experience</li>
+  </ul>
+
+  <div class="project-stack">
+    <span class="tag tag-blue">React.js</span>
+    <span class="tag tag-blue">Node.js</span>
+    <span class="tag tag-coral">Express.js</span>
+    <span class="tag tag-teal">PostgreSQL</span>
+    <span class="tag tag-amber">Tailwind CSS</span>
+    <span class="tag tag-purple">Recharts</span>
+    <span class="tag tag-green">REST API</span>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-eyebrow">Expertise</div>
+    <h2 class="section-heading">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag tag-purple">Java</span>
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-purple">JavaScript</span>
+          <span class="tag tag-purple">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="tag tag-blue">React.js</span>
+          <span class="tag tag-blue">HTML</span>
+          <span class="tag tag-blue">CSS</span>
+          <span class="tag tag-blue">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Backend</div>
+        <div class="skill-tags">
+          <span class="tag tag-coral">Node.js</span>
+          <span class="tag tag-coral">Express.js</span>
+          <span class="tag tag-coral">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Database & Tools</div>
+        <div class="skill-tags">
+          <span class="tag tag-teal">PostgreSQL</span>
+          <span class="tag tag-teal">Git</span>
+          <span class="tag tag-teal">GitHub</span>
+          <span class="tag tag-teal">Axios</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">ML & Data</div>
+        <div class="skill-tags">
+          <span class="tag tag-amber">Scikit-learn</span>
+          <span class="tag tag-amber">Pandas</span>
+          <span class="tag tag-amber">NLP</span>
+          <span class="tag tag-amber">Recharts</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">CS Fundamentals</div>
+        <div class="skill-tags">
+          <span class="tag tag-purple">DSA</span>
+          <span class="tag tag-purple">OOP</span>
+          <span class="tag tag-purple">DBMS</span>
+          <span class="tag tag-purple">OS</span>
+          <span class="tag tag-purple">CN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Background</div>
+    <h2 class="section-heading">Education & Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Intern · InternPe</div>
+        <div class="timeline-sub">Software Engineering Internship</div>
+        <div class="timeline-date">May 2025 – June 2025</div>
+        <div class="timeline-text">Working on real-world development tasks in a collaborative engineering environment.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">B.Tech in Computer Science & Engineering</div>
+        <div class="timeline-sub">JNTUK · CGPA 8.51</div>
+        <div class="timeline-date">2023 – 2027</div>
+        <div class="timeline-text">Jawaharlal Nehru Technological University, Kakinada.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Senior Secondary (XII)</div>
+        <div class="timeline-sub">Sri Chaitanya Junior College, Madhurawada · 977/1000</div>
+        <div class="timeline-date">2021 – 2023</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Secondary (X)</div>
+        <div class="timeline-sub">Sri Chaitanya School, Kommadi · 597/600</div>
+        <div class="timeline-date">2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Recognition</div>
+    <h2 class="section-heading">Achievements</h2>
+    <div class="achievements-grid">
+      <div class="ach-card">
+        <i class="ti ti-code ach-icon"></i>
+        <div class="ach-title">Code360 · 350+ problems</div>
+        <div class="ach-detail">Profile: ChaithanyaJanjam</div>
+      </div>
+      <div class="ach-card">
+        <i class="ti ti-topology-star-3 ach-icon"></i>
+        <div class="ach-title">LeetCode · Top 25%</div>
+        <div class="ach-detail">100+ DSA questions solved</div>
+      </div>
+      <div class="ach-card">
+        <i class="ti ti-puzzle ach-icon"></i>
+        <div class="ach-title">GeeksforGeeks · 70+ problems</div>
+        <div class="ach-detail">Profile: chaithanyadzg9</div>
+      </div>
+      <div class="ach-card">
+        <i class="ti ti-trophy ach-icon"></i>
+        <div class="ach-title">AP EAPCET 2023 · Rank 1419</div>
+        <div class="ach-detail">Out of 3.37 lakh applicants</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Learning</div>
+    <h2 class="section-heading">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-badge"><i class="ti ti-cpu"></i></div>
+        <div>
+          <div class="cert-title">NPTEL Embedded Systems Design</div>
+          <div class="cert-org">Score: 53% · NPTEL</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge"><i class="ti ti-robot"></i></div>
+        <div>
+          <div class="cert-title">GenAI & Agentic AI Workshop</div>
+          <div class="cert-org">BITS Pilani Hyderabad · Multi-agent systems, vector DBs</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge"><i class="ti ti-code"></i></div>
+        <div>
+          <div class="cert-title">NPTEL Programming in Java</div>
+          <div class="cert-org">Score: 77% · Silver · NPTEL</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge"><i class="ti ti-sparkles"></i></div>
+        <div>
+          <div class="cert-title">Career Essentials in Generative AI</div>
+          <div class="cert-org">Microsoft & LinkedIn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <h2 class="contact-heading">Let's build something</h2>
+      <p class="contact-sub">Open to internships, collaborations, and interesting problems.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:chaithanyajanjam@gmail.com"><i class="ti ti-mail"></i> chaithanyajanjam@gmail.com</a>
+        <a class="contact-link" href="tel:+919059464083"><i class="ti ti-phone"></i> +91 90594 64083</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/chaithanya-janjam-46b16b317/" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with intent · Chaithanya Janjam · 2026
+</footer>
+
+
+<script>
+(function(){
+const root=document.documentElement;
+const saved=localStorage.getItem("theme");
+const initial=saved||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+root.setAttribute("data-theme",initial);
+const btn=document.getElementById("theme-toggle");
+if(btn){
+btn.addEventListener("click",()=>{
+const next=root.getAttribute("data-theme")==="dark"?"light":"dark";
+root.setAttribute("data-theme",next);
+localStorage.setItem("theme",next);
+});
+}
+})();
+</script>
+</body>
+</html>
